@@ -65,6 +65,7 @@ THE SOFTWARE. */
       this.iframe.setAttribute('webkitAllowFullScreen', '0');
       this.iframe.setAttribute('mozallowfullscreen', '0');
       this.iframe.setAttribute('allowFullScreen', '0');
+      this.iframe.setAttribute('allow', "autoplay; fullscreen; picture-in-picture; xr-spatial-tracking; encrypted-media");
 
       var divWrapper = document.createElement('div');
       divWrapper.setAttribute('style', 'margin:0 auto;width:100%;height:100%;position:relative;overflow:hidden;');

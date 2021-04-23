@@ -10,6 +10,7 @@ import os.path
 import pkg_resources
 
 from django.template import Engine, Context, Template
+
 from xblockutils.resources import ResourceLoader
 
 from .constants import TranscriptSource
@@ -55,7 +56,6 @@ def render_template(template_name, **context):
     libraries = {'i18n': 'django.templatetags.i18n'}
     engine = Engine(dirs=template_dirs, debug=True, libraries=libraries)
     html = engine.get_template(template_name)
-
     return html_parser.unescape(
         html.render(Context(context))
     )

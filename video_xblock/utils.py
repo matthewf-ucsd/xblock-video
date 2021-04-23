@@ -3,7 +3,7 @@ Video xblock helpers.
 """
 
 from collections import namedtuple
-from html.parser import HTMLParser
+from HTMLParser import HTMLParser
 from importlib import import_module
 from xml.sax.saxutils import unescape
 import os.path
@@ -79,7 +79,7 @@ def underscore_to_mixedcase(value):
             yield str.capitalize
 
     mix = mixedcase()
-    return "".join(next(mix)(x) if x else '_' for x in value.split("_"))
+    return "".join(mix.next()(x) if x else '_' for x in value.split("_"))
 
 
 def remove_escaping(text):

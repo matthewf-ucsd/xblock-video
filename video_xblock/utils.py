@@ -3,7 +3,7 @@ Video xblock helpers.
 """
 
 from collections import namedtuple
-from HTMLParser import HTMLParser
+from html.parser import HTMLParser
 from importlib import import_module
 from xml.sax.saxutils import unescape
 import os.path
@@ -52,9 +52,8 @@ def render_template(template_name, **context):
     Returns: django.utils.safestring.SafeText
     """
     template_dirs = [os.path.join(os.path.dirname(__file__), 'static/html')]
-    engine = Engine.get_default()
-    engine.dirs = template_dirs
-    engine.debug = True
+    libraries = {'i18n': 'django.templatetags.i18n'}
+    engine = Engine(dirs=template_dirs, debug=True, libraries=libraries)
     html = engine.get_template(template_name)
 
     return html_parser.unescape(
@@ -80,7 +79,7 @@ def underscore_to_mixedcase(value):
             yield str.capitalize
 
     mix = mixedcase()
-    return "".join(mix.next()(x) if x else '_' for x in value.split("_"))
+    return "".join(next(mix)(x) if x else '_' for x in value.split("_"))
 
 
 def remove_escaping(text):
